@@ -60,13 +60,10 @@ public class UserDao extends BaseDao{
     }
 
 
-    public ArrayList<User> searchForTable (int userId, String role){
+    public ArrayList<User> searchForTable (String role){
         String select = "SELECT * FROM public.user ";
         ArrayList<String> whereList = new ArrayList<>();
 
-        if (userId != 0){
-            whereList.add("id = " + userId);
-        }
         if (role != null){
             whereList.add("role = '" + role + "'");
         }
@@ -89,5 +86,70 @@ public ArrayList<User> selectByQuery(String query) {
             e.printStackTrace();
         }
         return userList;
+    }
+
+
+    public boolean save(User user){
+        String query = "INSERT INTO public.user(user_name, password, role, name, surname) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setString(1, user.getUserName());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getRole().toString());
+            pr.setString(4, user.getName());
+            pr.setString(5, user.getSurname());
+            return pr.executeUpdate() != -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public boolean update(User user){
+        String query = "UPDATE public.user SET user_name=?, password=?, role=?, name=?, surname=? WHERE id=?";
+        try {
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setString(1, user.getUserName());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getRole().toString());
+            pr.setString(4, user.getName());
+            pr.setString(5, user.getSurname());
+            pr.setInt(6, user.getId());
+            return pr.executeUpdate() != -1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public boolean delete(int id){
+        String query = "DELETE FROM public.user WHERE id=?";
+        try {
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setInt(1, id);
+            return pr.executeUpdate() != -1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public User getById(int id){
+        User obj = null;
+        String query = "SELECT * FROM public.user WHERE id = ?";
+        try {
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                obj = this.match(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return obj;
     }
 }

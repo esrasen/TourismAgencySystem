@@ -40,8 +40,8 @@ public class LoginView extends Layout{
                         dispose();
                     } else if (loginUser.getRole().equals(UserRole.EMPLOYEE)) {
                         // Employee girişi
-                     //   EmployeeView employeeView = new EmployeeView(loginUser);
-                     //   employeeView.setVisible(true);
+                        EmployeeView employeeView = new EmployeeView(loginUser);
+                       employeeView.setVisible(true);
                         dispose();
                     } else {
                         Helper.showMsg("unknownRole");

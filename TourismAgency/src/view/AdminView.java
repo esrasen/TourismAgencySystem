@@ -2,6 +2,7 @@ package view;
 
 import business.UserManager;
 import core.ComboItem;
+import core.Helper;
 import entity.User;
 import entity.UserRole;
 
@@ -10,6 +11,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AdminView extends Layout{
@@ -23,6 +26,8 @@ public class AdminView extends Layout{
     private JComboBox cmb_role_filter;
     private JPanel w_top;
     private JPanel w_bottom;
+    private JButton btn_cncl;
+    private JPopupMenu userMenu;
     private Object[] col_user ;
     private DefaultTableModel tmdl_user= new DefaultTableModel();
 
@@ -42,11 +47,16 @@ public class AdminView extends Layout{
         loadComponent();
         loadUserTable(null);
         loadUserFilter();
+        loadUserInitComponent();
         btn_filter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadUserComponent();
             }
+        });
+        btn_cncl.addActionListener(e ->  {
+            this.cmb_role_filter.setSelectedItem(null);
+            loadUserTable(null);
         });
     }
 
@@ -78,27 +88,81 @@ public class AdminView extends Layout{
 
     }
     public void loadUserComponent() {
-
         ComboItem roleFilterSelectedItem = (ComboItem) this.cmb_role_filter.getSelectedItem();
-        int userId = 0;
-        if (roleFilterSelectedItem != null){
-            userId = roleFilterSelectedItem.getKey();
-        }
-        ArrayList<User> userListBySearch = this.userManager.searchForTable(
-                userId,
-                ((ComboItem) this.cmb_role_filter.getSelectedItem()).getValue());
 
+        ArrayList<User> userListBySearch = this.userManager.searchForTable(
+
+                ((ComboItem) this.cmb_role_filter.getSelectedItem()).getValue());
 
         ArrayList<Object[]> modelRowListBySearch = this.userManager.getForTable(this.col_user.length, userListBySearch);
         loadUserTable(modelRowListBySearch);
-    }
+
+
+    }/*
     public void loadUserFilterRole() {
         this.cmb_role_filter.removeAllItems();
         for(User role : userManager.findAll()) {
            this.cmb_role_filter.addItem(new ComboItem(role.getId(), role.getRole().name()));
         }
         this.cmb_role_filter.setSelectedItem(null);
+    }*/
+
+    public void loadUserInitComponent() {
+
+
+        tableRowSelect(this.tbl_user);
+        this.userMenu = new JPopupMenu();
+        this.userMenu.add("Yeni").addActionListener(e -> {
+            UserView userView = new UserView(new User());
+            userView.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    loadUserTable(null);
+                }
+            });
+        });
+        this.userMenu.add("Düzenle").addActionListener(e -> {
+            if (this.tbl_user.getSelectedRow() == -1) {
+                Helper.showMsg("select");
+            }else {
+                int selectedRow = tbl_user.getSelectedRow();
+                int selectedId = (int) tbl_user.getValueAt(selectedRow, 0);
+                UserView userView = new UserView(this.userManager.getById(selectedId));
+                userView.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        loadUserTable(null);
+                    }
+                });
+            }
+        });
+        this.userMenu.add("Sil").addActionListener(e -> {
+            if (this.tbl_user.getSelectedRow() == -1) {
+                Helper.showMsg("select");
+            }else {
+                int selectedRow = tbl_user.getSelectedRow();
+                int selectedId = (int) tbl_user.getValueAt(selectedRow, 0);
+                if (this.userManager.delete(selectedId)) {
+                    Helper.showMsg("done");
+                    loadUserTable(null);
+                }else {
+                    Helper.showMsg("error");
+                }
+            }
+        });
+        this.tbl_user.setComponentPopupMenu(this.userMenu);
+
+
+
     }
+    public void loadUserFilterRole() {
+        this.cmb_role_filter.removeAllItems();
+        for(UserRole role : UserRole.values()) {
+            this.cmb_role_filter.addItem(new ComboItem(role.ordinal(), role.name()));
+        }
+        this.cmb_role_filter.setSelectedItem(null);
+    }
+
 
 
 

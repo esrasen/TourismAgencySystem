@@ -1,5 +1,6 @@
 package business;
 
+import core.Helper;
 import dao.UserDao;
 import entity.User;
 import entity.UserRole;
@@ -37,8 +38,35 @@ public class UserManager {
         return this.userDao.findAll();
     }
 
-    public ArrayList<User> searchForTable(int id, String role) {
-        return this.userDao.searchForTable(id, role);
+    public boolean save(User user) {
+        if (this.getById(user.getId()) != null) {
+            Helper.showMsg("error");
+            return false;
+        }
+        return this.userDao.save(user);
+    }
+
+    public boolean update(User user) {
+        if (this.getById(user.getId()) == null) {
+            return false;
+        }
+        return this.userDao.update(user);
+    }
+
+    public boolean delete(int id) {
+        if (this.getById(id) == null) {
+            return false;
+        }
+        return this.userDao.delete(id);
+    }
+
+    public User getById(int id) {
+        return this.userDao.getById(id);
+    }
+
+
+    public ArrayList<User> searchForTable(String role) {
+        return this.userDao.searchForTable(role);
     }
 }
 

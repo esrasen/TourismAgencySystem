@@ -8,7 +8,7 @@ public class Hotel {
     private String address;
     private String email;
     private String phoneNumber;
-    private double starts;
+    private double stars;
     private boolean freePark;
     private boolean freeWifi;
     private boolean swimmingPool;
@@ -20,7 +20,7 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(int id, String hotelName, String city, String region, String address, String email, String phoneNumber, double starts, boolean freePark, boolean freeWifi, boolean swimmingPool, boolean fitnessCenter, boolean spa, boolean hotelConcierge, boolean houseKeeping) {
+    public Hotel(int id, String hotelName, String city, String region, String address, String email, String phoneNumber, double stars, boolean freePark, boolean freeWifi, boolean swimmingPool, boolean fitnessCenter, boolean spa, boolean hotelConcierge, boolean houseKeeping) {
         this.id = id;
         this.hotelName = hotelName;
         this.city = city;
@@ -28,7 +28,7 @@ public class Hotel {
         this.address = address;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.starts = starts;
+        this.stars = stars;
         this.freePark = freePark;
         this.freeWifi = freeWifi;
         this.swimmingPool = swimmingPool;
@@ -95,12 +95,12 @@ public class Hotel {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getStarts() {
-        return starts;
+    public double getStars() {
+        return stars;
     }
 
-    public void setStarts(double starts) {
-        this.starts = starts;
+    public void setStars(double stars) {
+        this.stars = stars;
     }
 
     public boolean isFreePark() {
@@ -169,7 +169,7 @@ public class Hotel {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", starts=" + starts +
+                ", starts=" + stars +
                 ", freePark=" + freePark +
                 ", freeWifi=" + freeWifi +
                 ", swimmingPool=" + swimmingPool +

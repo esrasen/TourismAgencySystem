@@ -1,9 +1,7 @@
 package dao;
 
-import core.DbConnection;
 import entity.Hotel;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,9 +36,9 @@ public class HotelDao extends BaseDao{
         obj.setRegion(rs.getString("region"));
         obj.setEmail(rs.getString("email"));
         obj.setPhoneNumber(rs.getString("phone_number"));
-        obj.setStarts(rs.getInt("starts"));
+        obj.setStars(rs.getInt("stars"));
         obj.setFreeWifi(rs.getBoolean("free_wifi"));
-        obj.setFreePark(rs.getBoolean("free_parking"));
+        obj.setFreePark(rs.getBoolean("free_park"));
         obj.setFitnessCenter(rs.getBoolean("fitness_center"));
         obj.setSpa(rs.getBoolean("spa"));
         obj.setSwimmingPool(rs.getBoolean("swimming_pool"));
@@ -66,7 +64,7 @@ public class HotelDao extends BaseDao{
             pr.setString(4, hotel.getRegion());
             pr.setString(5, hotel.getEmail());
             pr.setString(6, hotel.getPhoneNumber());
-            pr.setDouble(7, hotel.getStarts());
+            pr.setDouble(7, hotel.getStars());
             pr.setBoolean(8, hotel.isFreeWifi());
             pr.setBoolean(9, hotel.isFreePark());
             pr.setBoolean(10, hotel.isFitnessCenter());
@@ -112,7 +110,7 @@ public class HotelDao extends BaseDao{
             pr.setString(4, hotel.getCity());
             pr.setString(5, hotel.getEmail());
             pr.setString(6, hotel.getPhoneNumber());
-            pr.setDouble(7, hotel.getStarts());
+            pr.setDouble(7, hotel.getStars());
             return pr.executeUpdate() != -1;
 
         }catch (SQLException e){

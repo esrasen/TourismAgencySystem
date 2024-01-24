@@ -39,6 +39,10 @@ public class Helper {
                 msg = "Bir hata oluştu!";
                 title = "Hata!";
                 break;
+            case "unknownRole":
+                msg = "Bilinmeyen kullanıcı tipi!";
+                title = "Hata!";
+                break;
             default:
                 msg = str;
                 title = "Mesaj";
@@ -73,7 +77,7 @@ public class Helper {
     }
 
 
-    public  static int getLocationPoint(String type, Dimension size) {
+    public static int getLocationPoint(String type, Dimension size) {
         switch (type) {
             case "x":
                 return (Toolkit.getDefaultToolkit().getScreenSize().width - size.width) / 2;

@@ -5,7 +5,6 @@ import dao.HotelDao;
 import entity.Hotel;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class HotelManager {
     private final HotelDao hotelDao;
@@ -21,19 +20,19 @@ public class HotelManager {
             int i = 0;
             rowObject[i++] = hotel.getId();
             rowObject[i++] = hotel.getHotelName();
-            rowObject[i++] = hotel.getAddress();
             rowObject[i++] = hotel.getCity();
             rowObject[i++] = hotel.getRegion();
-            rowObject[i++] = hotel.getPhoneNumber();
+            rowObject[i++] = hotel.getAddress();
             rowObject[i++] = hotel.getEmail();
-            rowObject[i++] = hotel.getStarts();
-            rowObject[i++] = hotel.isHotelConcierge();
-            rowObject[i++] = hotel.isHouseKeeping();
-            rowObject[i++] = hotel.isFreePark();
-            rowObject[i++] = hotel.isFreeWifi();
-            rowObject[i++] = hotel.isSwimmingPool();
-            rowObject[i++] = hotel.isSpa();
-            rowObject[i++] = hotel.isFitnessCenter();
+            rowObject[i++] = hotel.getPhoneNumber();
+            rowObject[i++] = hotel.getStars();
+            rowObject[i++] = hotel.isFreePark() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isFreeWifi() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isSwimmingPool() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isSpa() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isFitnessCenter() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isHotelConcierge() ? "Var" : "Yok";
+            rowObject[i++] = hotel.isHouseKeeping() ? "Var" : "Yok";
 
             hotelRowList.add(rowObject);
         }
