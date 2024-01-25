@@ -16,7 +16,7 @@ public class PensionTypeDao extends BaseDao{
 
     public ArrayList<PensionType> findAll(){
         ArrayList<PensionType> pensionTypeList = new ArrayList<>();
-        String sql = "SELECT * FROM public.pension_type ORDER BY id ASC";
+        String sql = "SELECT * FROM public.pensiontype ORDER BY id ASC";
         try{
             ResultSet rs = this.conn.createStatement().executeQuery(sql);
             while (rs.next()){
@@ -37,20 +37,22 @@ public class PensionTypeDao extends BaseDao{
     }
 
     public boolean save(PensionType pensionType){
-        String query = "INSERT INTO public.pension_type(hotel_id, pension_option) VALUES (?,?)";
-        try{
-            PreparedStatement pr = this.conn.prepareStatement(query);
-            pr.setInt(1, pensionType.getHotelId());
-            pr.setString(2, pensionType.getPensionOption().toString());
-            return pr.executeUpdate() != -1;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+
+            String query = "INSERT INTO public.pensiontype(hotel_id, pension_option) VALUES (?,?)";
+            try {
+                PreparedStatement pr = this.conn.prepareStatement(query);
+                pr.setInt(1, pensionType.getHotelId());
+                pr.setString(2, pensionType.getPensionOption().name());
+                return pr.executeUpdate() != -1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         return true;
     }
 
     public boolean update(PensionType pensionType){
-        String query = "UPDATE public.pension_type SET hotel_id=?, pension_option=? WHERE id=?";
+        String query = "UPDATE public.pensiontype SET hotel_id=?, pension_option=? WHERE id=?";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, pensionType.getHotelId());
@@ -64,7 +66,7 @@ public class PensionTypeDao extends BaseDao{
     }
 
     public boolean delete(int id){
-        String query = "DELETE FROM public.pension_type WHERE id=?";
+        String query = "DELETE FROM public.pensiontype WHERE id=?";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, id);
@@ -76,7 +78,7 @@ public class PensionTypeDao extends BaseDao{
     }
     public PensionType getById(int id){
         PensionType obj = null;
-        String query = "SELECT * FROM public.pension_type WHERE id = ?";
+        String query = "SELECT * FROM public.pensiontype WHERE id = ?";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, id);

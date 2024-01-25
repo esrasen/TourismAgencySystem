@@ -15,15 +15,15 @@ public class SeasonManager {
     public ArrayList<Season> findAll() {
         return this.seasonDao.findAll();
     }
-    public ArrayList<Object[]> getForTable(int size){
+    public ArrayList<Object[]> getForTable(int size, ArrayList<Season> seasons){
         ArrayList<Object[]> seasonRowList = new ArrayList<>();
-        for(Season season : this.findAll()){
+        for(Season season : seasons){
             Object[] rowObject = new Object[size];
             int i = 0;
             rowObject[i ++] = season.getId();
             rowObject[i ++] = season.getHotelId();
-            rowObject[i ++] = season.getStartDate();
-            rowObject[i ++] = season.getEndDate();
+            rowObject[i ++] = season.getStartDate().toString();
+            rowObject[i ++] = season.getEndDate().toString();
             seasonRowList.add(rowObject);
         }
         return seasonRowList;
@@ -49,6 +49,22 @@ public class SeasonManager {
             return false;
         }
         return this.seasonDao.delete(id);
+    }
+
+    public ArrayList<Season> searchForTable(int hotelId){
+        String select = "SELECT * FROM public.season ";
+        ArrayList<String> whereList = new ArrayList<>();
+
+        if (hotelId != 0){
+            whereList.add("hotel_id = " + hotelId);
+        }
+
+        String whereStr = String.join(" AND ", whereList);
+        String query = select ;
+        if (whereStr.length() > 0){
+            query += "WHERE " + whereStr;
+        }
+        return this.seasonDao.selectByQuery(query);
     }
 
 }

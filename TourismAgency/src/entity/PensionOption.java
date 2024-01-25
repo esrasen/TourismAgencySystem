@@ -1,6 +1,7 @@
 package entity;
 
 public enum PensionOption {
+
     ULTRA_HER_SEY_DAHIL,
     HER_SEY_DAHIL,
     ODA_KAHVALTI,

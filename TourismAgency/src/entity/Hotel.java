@@ -8,7 +8,7 @@ public class Hotel {
     private String address;
     private String email;
     private String phoneNumber;
-    private double stars;
+    private int stars;
     private boolean freePark;
     private boolean freeWifi;
     private boolean swimmingPool;
@@ -20,7 +20,7 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(int id, String hotelName, String city, String region, String address, String email, String phoneNumber, double stars, boolean freePark, boolean freeWifi, boolean swimmingPool, boolean fitnessCenter, boolean spa, boolean hotelConcierge, boolean houseKeeping) {
+    public Hotel(int id, String hotelName, String city, String region, String address, String email, String phoneNumber, int stars, boolean freePark, boolean freeWifi, boolean swimmingPool, boolean fitnessCenter, boolean spa, boolean hotelConcierge, boolean houseKeeping) {
         this.id = id;
         this.hotelName = hotelName;
         this.city = city;
@@ -38,6 +38,23 @@ public class Hotel {
         this.houseKeeping = houseKeeping;
     }
 
+    public Hotel(String name, String city, String region, String address, String email, String phoneNumber, int stars, boolean freePark, boolean freeWifi, boolean swimmingPool, boolean fitnessCenter, boolean spa, boolean hotelConcierge, boolean houseKeeping) {
+        this.hotelName = name;
+        this.city = city;
+        this.region = region;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.stars = stars;
+        this.freePark = freePark;
+        this.freeWifi = freeWifi;
+        this.swimmingPool = swimmingPool;
+        this.fitnessCenter = fitnessCenter;
+        this.spa = spa;
+        this.hotelConcierge = hotelConcierge;
+        this.houseKeeping = houseKeeping;
+
+    }
 
     public int getId() {
         return id;
@@ -95,11 +112,11 @@ public class Hotel {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getStars() {
+    public int getStars() {
         return stars;
     }
 
-    public void setStars(double stars) {
+    public void setStars(int stars) {
         this.stars = stars;
     }
 

@@ -16,7 +16,7 @@ public class PensionTypeManager {
         return this.pensionTypeDao.findAll();
     }
 
-    public ArrayList getForTable(int size) {
+    public ArrayList getForTable(int size, ArrayList<PensionType> pensionTypes) {
         ArrayList<Object[]> pensionTypeRowList = new ArrayList<>();
         for (PensionType pensionType : this.findAll()) {
             Object[] rowObject = new Object[size];

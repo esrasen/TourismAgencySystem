@@ -53,7 +53,7 @@ public class HotelDao extends BaseDao{
     public boolean save(Hotel hotel){
         String query = "INSERT INTO public.hotel(hotel_name, " +
                 "address, city, region, email, phone_number," +
-                " starts, free_wifi, free_park, fitness_center, " +
+                " stars, free_wifi, free_park, fitness_center, " +
                 "spa, swimming_pool, hotel_concierge, house_keeping) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try{
@@ -64,7 +64,7 @@ public class HotelDao extends BaseDao{
             pr.setString(4, hotel.getRegion());
             pr.setString(5, hotel.getEmail());
             pr.setString(6, hotel.getPhoneNumber());
-            pr.setDouble(7, hotel.getStars());
+            pr.setInt(7, hotel.getStars());
             pr.setBoolean(8, hotel.isFreeWifi());
             pr.setBoolean(9, hotel.isFreePark());
             pr.setBoolean(10, hotel.isFitnessCenter());
@@ -100,7 +100,7 @@ public class HotelDao extends BaseDao{
 
 
     public boolean update(Hotel hotel){
-        String query = "UPDATE public.hotel SET hotel_name=?, address=?, city=? , email=?, phone_number=?, starts=? WHERE id=?";
+        String query = "UPDATE public.hotel SET hotel_name=?, address=?, city=? , email=?, phone_number=?, stars=? WHERE id=?";
 
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
@@ -110,7 +110,7 @@ public class HotelDao extends BaseDao{
             pr.setString(4, hotel.getCity());
             pr.setString(5, hotel.getEmail());
             pr.setString(6, hotel.getPhoneNumber());
-            pr.setDouble(7, hotel.getStars());
+            pr.setInt(7, hotel.getStars());
             return pr.executeUpdate() != -1;
 
         }catch (SQLException e){

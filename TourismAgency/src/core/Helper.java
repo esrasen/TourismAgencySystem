@@ -76,6 +76,14 @@ public class Helper {
         return false;
     }
 
+    public static boolean isRadioListEmpty(JRadioButton[] radioButtons) {
+        for (JRadioButton radio : radioButtons) {
+            if (radio.isSelected())
+                return true;
+        }
+        return false;
+    }
+
 
     public static int getLocationPoint(String type, Dimension size) {
         switch (type) {
