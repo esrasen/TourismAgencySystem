@@ -1,9 +1,6 @@
 package view;
 
-import business.HotelManager;
-import business.PensionTypeManager;
-import business.SeasonManager;
-import business.UserManager;
+import business.*;
 import core.ComboItem;
 import core.Helper;
 import entity.*;
@@ -27,7 +24,7 @@ public class EmployeeView extends Layout{
     private JScrollPane scl_hotel;
     private JLabel lbl_welcome;
     private JPanel pnl_season;
-    private JComboBox cmb_hotel_filter;
+    private JComboBox<ComboItem> cmb_hotel_filter;
     private JButton btn_save_season;
     private JButton btn_cncl_season;
     private Object[] col_hotel;
@@ -35,6 +32,8 @@ public class EmployeeView extends Layout{
     private SeasonManager seasonManager;
     private PensionType pensionType;
     private PensionTypeManager pensionTypeManager;
+    private RoomManager roomManager;
+
     private Season season;
     private User user;
     private UserManager userManager;
@@ -42,7 +41,9 @@ public class EmployeeView extends Layout{
     private DefaultTableModel tmdl_hotel = new DefaultTableModel();
     private DefaultTableModel tmdl_season = new DefaultTableModel();
     private DefaultTableModel tmdl_pension = new DefaultTableModel();
+    private DefaultTableModel tmdl_room = new DefaultTableModel();
     private JPopupMenu hotelMenu;
+    private JPopupMenu reservationMenu;
     private JFormattedTextField fld_strt_date;
     private JFormattedTextField fld_end_date;
     private JPanel pnl_pension_type;
@@ -53,15 +54,27 @@ public class EmployeeView extends Layout{
     private JPanel pnl_room;
     private JPanel pnl_reservation;
     private JButton btn_cncl_pension;
+    private JTable tbl_room;
+    private JTextField fld_room_hotelname;
+    private JTextField fld_room_city;
+    private JFormattedTextField fld_room_checkin;
+    private JFormattedTextField fld_room_checkout;
+    private JTextField fld_room_adult;
+    private JTextField fld_room_child;
+    private JButton btn_room_search;
+    private JButton btn_room_reset;
+    private JButton btn_add_room;
+    private JPanel pnl_room_search;
+    private JScrollPane scrl_room;
+    private Object[] col_season;
 
 
     public EmployeeView(User user) {
         this.add(container);
         this.hotelManager = new HotelManager();
-        this.hotel = hotel;
         this.seasonManager = new SeasonManager();
+        this.roomManager = new RoomManager();
         this.pensionTypeManager = new PensionTypeManager();
-        this.pensionType = pensionType;
         this.pensionType = new PensionType();
 
         this.season = new Season();
@@ -82,6 +95,8 @@ public class EmployeeView extends Layout{
         loadPensionTable(null);
         loadPensionFilterHotel();
         loadPensionComponent();
+        loadRoomTable(null);
+        loadRoomComponent();
 
     }
 
@@ -125,7 +140,7 @@ public class EmployeeView extends Layout{
 
 
     public void loadSeasonTable(ArrayList<Object[]> seasonList) {
-        Object[] col_season ={"ID", "Otel ID", "Başlangıç Tarihi ","Bitiş Tarihi "};
+        this.col_season =new Object[]{"ID", "Otel ID", "Başlangıç Tarihi ","Bitiş Tarihi "};
         if (seasonList == null){
             seasonList = this.seasonManager.getForTable(col_season.length, this.seasonManager.findAll());
         }
@@ -134,7 +149,7 @@ public class EmployeeView extends Layout{
     }
     public void loadSeasonFilterHotel() {
         this.cmb_hotel_filter.removeAllItems();
-        for (Hotel obj : this.hotelManager.findAll()){
+        for (Hotel obj : hotelManager.findAll()){
             this.cmb_hotel_filter.addItem(new ComboItem(obj.getId(), obj.getHotelName()));
         }
         this.cmb_hotel_filter.setSelectedItem(null);
@@ -173,10 +188,13 @@ public class EmployeeView extends Layout{
     }
 
 
+
+
+
     public void loadPensionTable(ArrayList<Object[]> pensionList) {
         Object[] col_pension ={"ID", "Otel ID", "Pansiyon Tipi"};
         if (pensionList == null) {
-            pensionList = this.pensionTypeManager.getForTable(col_pension.length, this.pensionTypeManager.findAll());
+            pensionList = this.pensionTypeManager.getForTable(col_pension.length);
         }
         this.createTable(this.tmdl_pension, this.tbl_pension, col_pension, pensionList);
         }
@@ -224,6 +242,33 @@ public class EmployeeView extends Layout{
         });
 
     }
+
+
+    public void loadRoomTable(ArrayList<Object[]> roomList) {
+        Object[] col_room ={"ID", "Otel Adı","Pansiyon", "Oda Tipi", "Stok", "Yetişkin Fiyat ", "Çocuk Fiyat", "Yatak Kapasitesi", "m2", "TV", "Minibar", "Konsol", "Kasa", "Projeksiyon"};
+        if (roomList == null) {
+            roomList = this.roomManager.getForTable(col_room.length);
+        }
+        this.createTable(this.tmdl_room, this.tbl_room, col_room, roomList);
+    }
+
+   public void loadRoomComponent(){
+        tableRowSelect(this.tbl_room);
+        this.reservationMenu = new JPopupMenu();
+        this.reservationMenu.add("Rezervasyon Ekle").addActionListener(e -> {
+            ReservationView reservationView = new ReservationView(null);
+            reservationView.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    loadRoomTable(null);
+                }
+            });
+
+        });
+        this.tbl_room.setComponentPopupMenu(this.reservationMenu);
+
+   }
+
 
 
 

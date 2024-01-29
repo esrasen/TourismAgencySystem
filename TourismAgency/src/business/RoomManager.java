@@ -20,15 +20,19 @@ public class RoomManager {
             Object[] rowObject = new Object[size];
             int i = 0;
             rowObject[i ++] = room.getId();
-            rowObject[i ++] = room.getHotelId();
-            rowObject[i ++] = room.getPensionTypeId();
-            rowObject[i ++] = room.getSeasonId();
+            rowObject[i ++] = room.getHotelName();
+            rowObject[i ++] = room.getPensionOptionName();
             rowObject[i ++] = room.getRoomOption();
+            rowObject[i ++] = room.getStock();
             rowObject[i ++] = room.getAdultPrice();
             rowObject[i ++] = room.getChildPrice();
             rowObject[i ++] = room.getBedCount();
             rowObject[i ++] = room.getMeter();
-            rowObject[i ++] = room.getStock();
+            rowObject[i ++] = room.isTv() ? "Var" : "Yok";
+            rowObject[i ++] = room.isMinibar() ? "Var" : "Yok";
+            rowObject[i ++] = room.isGameConsole() ? "Var" : "Yok";
+            rowObject[i ++] = room.isSafeBox() ? "Var" : "Yok";
+            rowObject[i ++] = room.isProjection() ? "Var" : "Yok";
 
             roomRowList.add(rowObject);
         }

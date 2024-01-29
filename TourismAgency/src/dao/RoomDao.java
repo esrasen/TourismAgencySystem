@@ -1,10 +1,9 @@
 package dao;
 
-import core.DbConnection;
+import entity.PensionOption;
 import entity.Room;
 import entity.RoomOption;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,11 @@ public class RoomDao extends BaseDao {
 
     public ArrayList<Room> findAll() {
         ArrayList<Room> roomList = new ArrayList<>();
-        String sql = "SELECT * FROM public.room ORDER BY id ASC";
+        String sql = "SELECT * FROM public.room " +
+                "JOIN public.hotel ON room.hotel_id = hotel.id " +
+                "JOIN public.pensionType ON room.pension_type_id = pensionType.id " +
+                "ORDER BY room.id ASC";
+
         try {
             ResultSet rs = this.conn.createStatement().executeQuery(sql);
             while (rs.next()) {
@@ -31,10 +34,10 @@ public class RoomDao extends BaseDao {
 
     public Room match(ResultSet rs) throws SQLException {
         Room obj = new Room();
+        System.out.println(rs.toString());
         obj.setId(rs.getInt("id"));
-        obj.setHotelId(rs.getInt("hotel_id"));
-        obj.setSeasonId(rs.getInt("season_id"));
-        obj.setPensionTypeId(rs.getInt("pension_type_id"));
+        obj.setHotelName(rs.getString("hotel_name"));
+        obj.setPensionOptionName(PensionOption.valueOf(PensionOption.class, rs.getString("pension_option")));
         obj.setAdultPrice(rs.getBigDecimal("adult_price"));
         obj.setChildPrice(rs.getBigDecimal("child_price"));
         obj.setRoomOption(RoomOption.valueOf(RoomOption.class, rs.getString("room_option")));

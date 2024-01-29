@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class Room {
     private int id;
     private int hotelId;
+    private String hotelName;
+    private PensionOption pensionOptionName;
     private int seasonId;
     private int pensionTypeId;
     private BigDecimal adultPrice;
@@ -140,5 +142,21 @@ public class Room {
 
     public void setSafeBox(boolean safeBox) {
         this.safeBox = safeBox;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public PensionOption getPensionOptionName() {
+        return pensionOptionName;
+    }
+
+    public void setPensionOptionName(PensionOption pensionOptionName) {
+        this.pensionOptionName = pensionOptionName;
     }
 }

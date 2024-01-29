@@ -35,23 +35,6 @@ public class HotelView extends Layout{
         this.hotelManager = new HotelManager();
 
 
-        if (this.hotel != null){
-            this.fld_hotel_name.setText(this.hotel.getHotelName());
-            this.fld_hotel_city.setText(this.hotel.getCity());
-            this.fld_hotel_region.setText(this.hotel.getRegion());
-            this.fld_hotel_address.setText(this.hotel.getAddress());
-            this.fld_hotel_email.setText(this.hotel.getEmail());
-            this.fld_hotel_phone.setText(this.hotel.getPhoneNumber());
-            this.fld_hotel_stars.setText(String.valueOf(this.hotel.getStars()));
-            this.rd_btn_park.setSelected(this.hotel.isFreePark());
-            this.rd_btn_wifi.setSelected(this.hotel.isFreeWifi());
-            this.rd_btn_pool.setSelected(this.hotel.isSwimmingPool());
-            this.rd_btn_fitness.setSelected(this.hotel.isFitnessCenter());
-            this.rd_btn_spa.setSelected(this.hotel.isSpa());
-            this.rd_btn_housekeeping.setSelected(this.hotel.isHouseKeeping());
-            this.rd_btn_concierge.setSelected(this.hotel.isHotelConcierge());
-
-        }
         btn_hotel_save.addActionListener(e ->  {
             JTextField[] checkFieldList ={
                     this.fld_hotel_name,
@@ -62,16 +45,8 @@ public class HotelView extends Layout{
                     this.fld_hotel_phone,
                     this.fld_hotel_stars
             };
-            JRadioButton[] checkRadioList ={
-                    this.rd_btn_park,
-                    this.rd_btn_wifi,
-                    this.rd_btn_pool,
-                    this.rd_btn_fitness,
-                    this.rd_btn_spa,
-                    this.rd_btn_housekeeping,
-                    this.rd_btn_concierge
-            };
-            if(Helper.isFieldListEmpty(checkFieldList) && Helper.isRadioListEmpty(checkRadioList)){
+
+            if(Helper.isFieldListEmpty(checkFieldList) ){
                 Helper.showMsg("fill");
             }else{
                 boolean result ;
