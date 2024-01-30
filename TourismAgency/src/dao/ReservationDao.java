@@ -34,11 +34,13 @@ public class ReservationDao extends BaseDao{
         obj.setId(rs.getInt("id"));
         obj.setRoomId(rs.getInt("room_id"));
         obj.setGuestName(rs.getString("guest_name"));
-        obj.setGuestSurname(rs.getString("guest_surname"));
         obj.setGuestIDNumber(rs.getString("guest_id_number"));
         obj.setCheckInDate(LocalDate.parse(rs.getString("check_in_date")));
         obj.setCheckOutDate(LocalDate.parse(rs.getString("check_out_date")));
         obj.setTotalPrice(rs.getBigDecimal("total_price"));
+        obj.setGuestMail(rs.getString("guest_mail"));
+        obj.setGuestPhone(rs.getString("guest_phone_number"));
+        obj.setTotalGuest(rs.getInt("total_guest"));
 
         return obj;
     }
@@ -47,23 +49,27 @@ public class ReservationDao extends BaseDao{
         String query = "INSERT INTO public.reservation" +
                 "(" +
                 "room_id," +
-                " guest_name, " +
-                "guest_surname, " +
+                "guest_name, " +
                 "guest_id_number, " +
                 "check_in_date, " +
                 "check_out_date, " +
-                "total_price" +
+                "total_price," +
+                "guest_mail," +
+                "guest_phone_number," +
+                "total_guest" +
                 ")" +
-                " VALUES (?,?,?,?,?,?,?)";
+                " VALUES (?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, reservation.getRoomId());
             pr.setString(2, reservation.getGuestName());
-            pr.setString(3, reservation.getGuestSurname());
-            pr.setString(4, reservation.getGuestIDNumber());
-            pr.setDate(5, Date.valueOf(reservation.getCheckInDate()));
-            pr.setDate(6, Date.valueOf(reservation.getCheckOutDate()));
-            pr.setBigDecimal(7, reservation.getTotalPrice());
+            pr.setString(3, reservation.getGuestIDNumber());
+            pr.setDate(4, Date.valueOf(reservation.getCheckInDate()));
+            pr.setDate(5, Date.valueOf(reservation.getCheckOutDate()));
+            pr.setBigDecimal(6, reservation.getTotalPrice());
+            pr.setString(7, reservation.getGuestMail());
+            pr.setString(8, reservation.getGuestPhone());
+            pr.setInt(9, reservation.getTotalGuest());
             return pr.executeUpdate() != -1;
         }catch (SQLException e){
             e.printStackTrace();
@@ -75,22 +81,26 @@ public class ReservationDao extends BaseDao{
         String query = "UPDATE public.reservation SET " +
                 "room_id=?," +
                 " guest_name=?," +
-                " guest_surname=?," +
                 " guest_id_number=?, " +
                 "check_in_date=?," +
                 " check_out_date=?, " +
                 "total_price=? " +
+                "guest_mail=? " +
+                "guest_phone_number=? " +
+                "total_guest=? " +
                 "WHERE id=?";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, reservation.getRoomId());
             pr.setString(2, reservation.getGuestName());
-            pr.setString(3, reservation.getGuestSurname());
-            pr.setString(4, reservation.getGuestIDNumber());
-            pr.setDate(5, Date.valueOf(reservation.getCheckInDate()));
-            pr.setDate(6, Date.valueOf(reservation.getCheckOutDate()));
-            pr.setBigDecimal(7, reservation.getTotalPrice());
-            pr.setInt(8, reservation.getId());
+            pr.setString(3, reservation.getGuestIDNumber());
+            pr.setDate(4, Date.valueOf(reservation.getCheckInDate()));
+            pr.setDate(5, Date.valueOf(reservation.getCheckOutDate()));
+            pr.setBigDecimal(6, reservation.getTotalPrice());
+            pr.setInt(7, reservation.getId());
+            pr.setString(8, reservation.getGuestMail());
+            pr.setString(9, reservation.getGuestPhone());
+            pr.setInt(10, reservation.getTotalGuest());
             return pr.executeUpdate() != -1;
         }catch (SQLException e){
             e.printStackTrace();

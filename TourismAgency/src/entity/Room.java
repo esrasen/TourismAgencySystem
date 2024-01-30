@@ -159,4 +159,27 @@ public class Room {
     public void setPensionOptionName(PensionOption pensionOptionName) {
         this.pensionOptionName = pensionOptionName;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", hotelId=" + hotelId +
+                ", hotelName='" + hotelName + '\'' +
+                ", pensionOptionName=" + pensionOptionName +
+                ", seasonId=" + seasonId +
+                ", pensionTypeId=" + pensionTypeId +
+                ", adultPrice=" + adultPrice +
+                ", childPrice=" + childPrice +
+                ", roomOption=" + roomOption +
+                ", stock=" + stock +
+                ", bedCount=" + bedCount +
+                ", meter=" + meter +
+                ", tv=" + tv +
+                ", minibar=" + minibar +
+                ", gameConsole=" + gameConsole +
+                ", projection=" + projection +
+                ", safeBox=" + safeBox +
+                '}';
+    }
 }

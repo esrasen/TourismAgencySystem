@@ -29,13 +29,16 @@
               <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="98aab" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="98aab" class="javax.swing.JTextField" binding="fld_reservation_hotelname">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="true"/>
+              <enabled value="false"/>
+            </properties>
           </component>
           <component id="cc71f" class="javax.swing.JLabel">
             <constraints>
@@ -45,13 +48,15 @@
               <text value="Şehir"/>
             </properties>
           </component>
-          <component id="ca3b1" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="ca3b1" class="javax.swing.JTextField" binding="fld_reservation_city">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
           <component id="e3946" class="javax.swing.JLabel">
             <constraints>
@@ -61,67 +66,76 @@
               <text value="Yıldız"/>
             </properties>
           </component>
-          <component id="b2497" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="b2497" class="javax.swing.JTextField" binding="fld_reservation_star">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="721a2" class="javax.swing.JRadioButton" binding="otoparkRadioButton" default-binding="true">
+          <component id="721a2" class="javax.swing.JRadioButton" binding="rd_btn_park">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Otopark"/>
             </properties>
           </component>
-          <component id="39511" class="javax.swing.JRadioButton" binding="wiFiRadioButton" default-binding="true">
+          <component id="39511" class="javax.swing.JRadioButton" binding="rd_btn_wifi">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="WiFi"/>
             </properties>
           </component>
-          <component id="f57a2" class="javax.swing.JRadioButton" binding="yüzmeHavuzuRadioButton" default-binding="true">
+          <component id="f57a2" class="javax.swing.JRadioButton" binding="rd_btn_pool">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Yüzme Havuzu"/>
             </properties>
           </component>
-          <component id="83aaa" class="javax.swing.JRadioButton" binding="fitnessCenterRadioButton" default-binding="true">
+          <component id="83aaa" class="javax.swing.JRadioButton" binding="rd_btn_fitness">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Fitness Center"/>
             </properties>
           </component>
-          <component id="61060" class="javax.swing.JRadioButton" binding="spaRadioButton" default-binding="true">
+          <component id="61060" class="javax.swing.JRadioButton" binding="rd_btn_spa">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Spa"/>
             </properties>
           </component>
-          <component id="f9c43" class="javax.swing.JRadioButton" binding="conciergeRadioButton" default-binding="true">
+          <component id="f9c43" class="javax.swing.JRadioButton" binding="rd_btn_concierge">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Concierge"/>
             </properties>
           </component>
-          <component id="d3496" class="javax.swing.JRadioButton" binding="odaServisiRadioButton" default-binding="true">
+          <component id="d3496" class="javax.swing.JRadioButton" binding="rd_btn_housekeeping">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Oda Servisi"/>
             </properties>
           </component>
@@ -175,45 +189,56 @@
               <text value="Çıkış Tarihi"/>
             </properties>
           </component>
-          <component id="c4324" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="c4324" class="javax.swing.JTextField" binding="fld_reservation_room_option">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="true"/>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="4a88e" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+          <component id="4a88e" class="javax.swing.JTextField" binding="fld_reservation_pension_type">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="3d6af" class="javax.swing.JFormattedTextField" binding="formattedTextField1" default-binding="true">
+          <component id="3d6af" class="javax.swing.JFormattedTextField" binding="fld_reservation_start_date">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="58b55" class="javax.swing.JFormattedTextField" binding="formattedTextField2" default-binding="true">
+          <component id="58b55" class="javax.swing.JFormattedTextField" binding="fld_reservation_end_date">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="712f" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+          <component id="712f" class="javax.swing.JTextField" binding="fld_reservation_prc">
             <constraints>
               <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
           <component id="72f2d" class="javax.swing.JLabel">
             <constraints>
@@ -223,13 +248,15 @@
               <text value="Yatak Kapasitesi"/>
             </properties>
           </component>
-          <component id="97bf4" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+          <component id="97bf4" class="javax.swing.JTextField" binding="fld_reservation_bed">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
           <component id="dab11" class="javax.swing.JLabel">
             <constraints>
@@ -239,51 +266,58 @@
               <text value="Oda Alanı (m2)"/>
             </properties>
           </component>
-          <component id="52805" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+          <component id="52805" class="javax.swing.JTextField" binding="fld_reservation_m2">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
-          <component id="9079c" class="javax.swing.JRadioButton" binding="TVRadioButton" default-binding="true">
+          <component id="9079c" class="javax.swing.JRadioButton" binding="rd_btn_tv">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="TV"/>
             </properties>
           </component>
-          <component id="76837" class="javax.swing.JRadioButton" binding="oyunKonsoluRadioButton" default-binding="true">
+          <component id="76837" class="javax.swing.JRadioButton" binding="rd_btn_console">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Oyun Konsolu"/>
             </properties>
           </component>
-          <component id="fd50b" class="javax.swing.JRadioButton" binding="projeksiyonRadioButton" default-binding="true">
+          <component id="fd50b" class="javax.swing.JRadioButton" binding="rd_btn_projection">
             <constraints>
               <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Projeksiyon"/>
             </properties>
           </component>
-          <component id="797c2" class="javax.swing.JRadioButton" binding="minibarRadioButton" default-binding="true">
+          <component id="797c2" class="javax.swing.JRadioButton" binding="rd_btn_minibar">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Minibar"/>
             </properties>
           </component>
-          <component id="9734b" class="javax.swing.JRadioButton" binding="kasaRadioButton" default-binding="true">
+          <component id="9734b" class="javax.swing.JRadioButton" binding="rd_btn_safebox">
             <constraints>
               <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Kasa"/>
             </properties>
           </component>
@@ -320,15 +354,18 @@
               <text value="Misafir Mail Adresi"/>
             </properties>
           </component>
-          <component id="3d977" class="javax.swing.JTextField" binding="textField9" default-binding="true">
+          <component id="3d977" class="javax.swing.JTextField" binding="fld_reservation_guest_count">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+            </properties>
           </component>
-          <component id="31fa1" class="javax.swing.JTextField" binding="textField10" default-binding="true">
+          <component id="31fa1" class="javax.swing.JTextField" binding="fld_reservation_guest_mail">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -344,7 +381,7 @@
               <text value="Misafir Adı"/>
             </properties>
           </component>
-          <component id="b24e8" class="javax.swing.JTextField" binding="textField11" default-binding="true">
+          <component id="b24e8" class="javax.swing.JTextField" binding="fld_reservation_guest_name">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -360,7 +397,7 @@
               <text value="Misafir Kimlik No"/>
             </properties>
           </component>
-          <component id="1adbb" class="javax.swing.JTextField" binding="textField12" default-binding="true">
+          <component id="1adbb" class="javax.swing.JTextField" binding="fld_reservation_guest_ID_no">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -376,7 +413,7 @@
               <text value="Misafir Telefon Numarası"/>
             </properties>
           </component>
-          <component id="4d7e9" class="javax.swing.JTextField" binding="textField13" default-binding="true">
+          <component id="4d7e9" class="javax.swing.JTextField" binding="fld_reservation_guest_mpno">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -384,7 +421,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="7b04a" class="javax.swing.JButton" binding="rezervasyonOluşturButton" default-binding="true">
+          <component id="7b04a" class="javax.swing.JButton" binding="btn_reservation_save">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

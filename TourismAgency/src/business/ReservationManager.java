@@ -23,12 +23,14 @@ public class ReservationManager {
             int i = 0;
             rowObject[i++] = reservation.getId();
             rowObject[i++] = reservation.getRoomId();
-            rowObject[i++] = reservation.getGuestName();
-            rowObject[i++] = reservation.getGuestSurname();
-            rowObject[i++] = reservation.getGuestIDNumber();
             rowObject[i++] = reservation.getCheckInDate();
             rowObject[i++] = reservation.getCheckOutDate();
             rowObject[i++] = reservation.getTotalPrice();
+            rowObject[i++] = reservation.getTotalGuest();
+            rowObject[i++] = reservation.getGuestName();
+            rowObject[i++] = reservation.getGuestIDNumber();
+            rowObject[i++] = reservation.getGuestMail();
+            rowObject[i++] = reservation.getGuestPhone();
 
             reservationRowList.add(rowObject);
         }

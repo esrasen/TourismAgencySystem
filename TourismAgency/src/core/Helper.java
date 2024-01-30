@@ -43,6 +43,14 @@ public class Helper {
                 msg = "Bilinmeyen kullanıcı tipi!";
                 title = "Hata!";
                 break;
+            case "bedCountLimitExceeded":
+                msg = "Yatak kapasitesi limiti aşıldı!";
+                title = "Hata!";
+                break;
+            case "typeError":
+                msg = "Doğru tipte veri giriniz!";
+                title = "Hata!";
+                break;
             default:
                 msg = str;
                 title = "Mesaj";

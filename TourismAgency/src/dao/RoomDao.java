@@ -36,7 +36,9 @@ public class RoomDao extends BaseDao {
         Room obj = new Room();
         System.out.println(rs.toString());
         obj.setId(rs.getInt("id"));
+        obj.setHotelId(rs.getInt("hotel_id"));
         obj.setHotelName(rs.getString("hotel_name"));
+        obj.setSeasonId(rs.getInt("season_id"));
         obj.setPensionOptionName(PensionOption.valueOf(PensionOption.class, rs.getString("pension_option")));
         obj.setAdultPrice(rs.getBigDecimal("adult_price"));
         obj.setChildPrice(rs.getBigDecimal("child_price"));
@@ -145,9 +147,13 @@ public class RoomDao extends BaseDao {
     }
     public Room getById(int id){
         Room obj = null;
-        String query = "SELECT * FROM public.room WHERE id = ?";
+        String sql = "SELECT * FROM public.room " +
+                "JOIN public.hotel ON room.hotel_id = hotel.id " +
+                "JOIN public.pensionType ON room.pension_type_id = pensionType.id " +
+                "WHERE room.id = ?";
+
         try{
-            PreparedStatement pr = this.conn.prepareStatement(query);
+            PreparedStatement pr = this.conn.prepareStatement(sql);
             pr.setInt(1, id);
             ResultSet rs = pr.executeQuery();
             if (rs.next()){

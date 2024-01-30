@@ -8,11 +8,14 @@ public class Reservation {
     private int id;
     private int roomId;
     private String guestName;
-    private String guestSurname;
     private String guestIDNumber;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private BigDecimal totalPrice;
+    private int totalGuest;
+    private String guestMail;
+    private String guestPhone;
+
 
     public Reservation() {
     }
@@ -41,13 +44,6 @@ public class Reservation {
         this.guestName = guestName;
     }
 
-    public String getGuestSurname() {
-        return guestSurname;
-    }
-
-    public void setGuestSurname(String guestSurname) {
-        this.guestSurname = guestSurname;
-    }
 
     public String getGuestIDNumber() {
         return guestIDNumber;
@@ -81,17 +77,31 @@ public class Reservation {
         this.totalPrice = totalPrice;
     }
 
-    @Override
+    public int getTotalGuest() {return totalGuest;}
+
+    public void setTotalGuest(int totalGuest) {this.totalGuest = totalGuest;}
+
+    public String getGuestMail() {return guestMail;}
+
+    public void setGuestMail(String guestMail) {this.guestMail = guestMail;}
+
+    public String getGuestPhone() {return guestPhone;}
+
+    public void setGuestPhone(String guestPhone) {this.guestPhone = guestPhone;}
+
+   @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
                 ", roomId=" + roomId +
-                ", guestName=" + guestName +
-                ", guestSurname=" + guestSurname +
-                ", guestIDNumber=" + guestIDNumber +
+                ", guestName='" + guestName + '\'' +
+                ", guestIDNumber='" + guestIDNumber + '\'' +
                 ", checkInDate=" + checkInDate +
                 ", checkOutDate=" + checkOutDate +
                 ", totalPrice=" + totalPrice +
+                ", totalGuest=" + totalGuest +
+                ", guestMail='" + guestMail + '\'' +
+                ", guestPhone='" + guestPhone + '\'' +
                 '}';
     }
 }
