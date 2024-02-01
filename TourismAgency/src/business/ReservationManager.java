@@ -62,6 +62,10 @@ public class ReservationManager {
         return this.reservationDao.delete(id);
     }
 
+    public int getRoomIdByReservationId(int reservationId){
+        return this.reservationDao.getRoomIdByReservationId(reservationId);
+    }
+
 
 
 }

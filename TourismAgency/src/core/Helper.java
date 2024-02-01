@@ -51,6 +51,26 @@ public class Helper {
                 msg = "Doğru tipte veri giriniz!";
                 title = "Hata!";
                 break;
+            case "stockError":
+                msg = "Otelde yeterli oda yok!";
+                title = "Hata!";
+                break;
+            case "checkIsBefore":
+                msg = "Giriş tarihi sezon başlangıç tarihinden önce olamaz!";
+                title = "Hata!";
+                break;
+            case "checkIsAfter":
+                msg = "Çıkış tarihi sezon bitiş tarihinden sonra olamaz!";
+                title = "Hata!";
+                break;
+            case "checkIsAfterCheckOut":
+                msg = "Giriş tarihi çıkış tarihinden sonra olamaz!";
+                title = "Hata!";
+                break;
+            case "noSeason":
+                msg = "Sezon bulunamadı!";
+                title = "Hata!";
+                break;
             default:
                 msg = str;
                 title = "Mesaj";
@@ -83,7 +103,6 @@ public class Helper {
         }
         return false;
     }
-
 
 
     public static int getLocationPoint(String type, Dimension size) {

@@ -15,6 +15,8 @@ public class Reservation {
     private int totalGuest;
     private String guestMail;
     private String guestPhone;
+    private int adultCount;
+    private int childCount;
 
 
     public Reservation() {
@@ -89,7 +91,15 @@ public class Reservation {
 
     public void setGuestPhone(String guestPhone) {this.guestPhone = guestPhone;}
 
-   @Override
+    public int getAdultCount() {return adultCount;}
+
+    public void setAdultCount(int adultCount) {this.adultCount = adultCount;}
+
+    public int getChildCount() {return childCount;}
+
+    public void setChildCount(int childCount) {this.childCount = childCount;}
+
+    @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
@@ -102,6 +112,8 @@ public class Reservation {
                 ", totalGuest=" + totalGuest +
                 ", guestMail='" + guestMail + '\'' +
                 ", guestPhone='" + guestPhone + '\'' +
+                ", adultCount=" + adultCount +
+                ", childCount=" + childCount +
                 '}';
     }
 }

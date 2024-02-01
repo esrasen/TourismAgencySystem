@@ -4,9 +4,12 @@ import entity.PensionOption;
 import entity.Room;
 import entity.RoomOption;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class RoomDao extends BaseDao {
@@ -17,8 +20,8 @@ public class RoomDao extends BaseDao {
     public ArrayList<Room> findAll() {
         ArrayList<Room> roomList = new ArrayList<>();
         String sql = "SELECT * FROM public.room " +
-                "JOIN public.hotel ON room.hotel_id = hotel.id " +
-                "JOIN public.pensionType ON room.pension_type_id = pensionType.id " +
+                "INNER JOIN public.hotel ON room.hotel_id = hotel.id " +
+                "INNER JOIN public.pensiontype ON room.pension_type_id = pensiontype.id " +
                 "ORDER BY room.id ASC";
 
         try {
@@ -37,9 +40,12 @@ public class RoomDao extends BaseDao {
         System.out.println(rs.toString());
         obj.setId(rs.getInt("id"));
         obj.setHotelId(rs.getInt("hotel_id"));
+        obj.setPensionTypeId(rs.getInt("pension_type_id"));
         obj.setHotelName(rs.getString("hotel_name"));
         obj.setSeasonId(rs.getInt("season_id"));
-        obj.setPensionOptionName(PensionOption.valueOf(PensionOption.class, rs.getString("pension_option")));
+        if ( rs.getString("pension_option") != null) {
+            obj.setPensionOptionName(PensionOption.valueOf(PensionOption.class, rs.getString("pension_option")));
+        }
         obj.setAdultPrice(rs.getBigDecimal("adult_price"));
         obj.setChildPrice(rs.getBigDecimal("child_price"));
         obj.setRoomOption(RoomOption.valueOf(RoomOption.class, rs.getString("room_option")));
@@ -149,7 +155,7 @@ public class RoomDao extends BaseDao {
         Room obj = null;
         String sql = "SELECT * FROM public.room " +
                 "JOIN public.hotel ON room.hotel_id = hotel.id " +
-                "JOIN public.pensionType ON room.pension_type_id = pensionType.id " +
+                "JOIN public.pensiontype ON room.pension_type_id = pensiontype.id " +
                 "WHERE room.id = ?";
 
         try{
@@ -164,6 +170,62 @@ public class RoomDao extends BaseDao {
         }
 
         return obj;
+    }
+
+
+    public ArrayList<Room> searchForRoom(String hotelName, String city, String checkInDate, String checkOutDate) {
+        ArrayList<Room> roomList = new ArrayList<>();
+        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM public.room " +
+                "INNER JOIN public.hotel ON room.hotel_id = hotel.id " +
+                "INNER JOIN public.season ON room.season_id = season.id " +
+                "INNER JOIN public.pensionType ON room.pension_type_id = pensionType.id " +
+                "WHERE room.stock > 0 ");
+
+        // Filtrelerin durumuna göre sorguya ekleme yap
+        if (hotelName != null && !hotelName.isEmpty()) {
+            sqlBuilder.append("AND hotel.hotel_name ILIKE ? ");
+        }
+
+        if (city != null && !city.isEmpty()) {
+            sqlBuilder.append("AND hotel.city ILIKE ? ");
+        }
+
+        if (checkInDate != null && !checkInDate.isEmpty() && checkOutDate != null && !checkOutDate.isEmpty()) {
+            sqlBuilder.append("AND season.start_date <= ? AND season.end_date >= ? ");
+        }
+
+        sqlBuilder.append("ORDER BY room.id ASC");
+
+        try (PreparedStatement pr = this.conn.prepareStatement(sqlBuilder.toString())) {
+            int parameterIndex = 1;
+
+            if (hotelName != null && !hotelName.isEmpty()) {
+                pr.setString(parameterIndex++, "%" + hotelName + "%");
+            }
+
+            if (city != null && !city.isEmpty()) {
+                pr.setString(parameterIndex++, "%" + city + "%");
+            }
+
+            if (checkInDate != null && !checkInDate.isEmpty() && checkOutDate != null && !checkOutDate.isEmpty()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate localCheckInDate = LocalDate.parse(checkInDate, formatter);
+                LocalDate localCheckOutDate = LocalDate.parse(checkOutDate, formatter);
+
+                pr.setDate(parameterIndex++, Date.valueOf(localCheckInDate));
+                pr.setDate(parameterIndex++, Date.valueOf(localCheckOutDate));
+            }
+
+            try (ResultSet rs = pr.executeQuery()) {
+                while (rs.next()) {
+                    roomList.add(this.match(rs)); // match metodu, ResultSet'ten Room nesnesine dönüştürme işlemini yapmalı
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return roomList;
     }
 
 }

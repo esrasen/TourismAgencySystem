@@ -33,7 +33,7 @@ public class LoginView extends Layout{
                 if (loginUser == null){
                     Helper.showMsg("notFound");
                 }else {
-                    if (loginUser.getRole().equals(UserRole.ADMIN) || loginUser.getRole().equals(UserRole.SUPER_ADMIN)) {
+                    if (loginUser.getRole().equals(UserRole.ADMIN)) {
                         // Admin girişi
                         AdminView adminView = new AdminView(loginUser);
                         adminView.setVisible(true);

@@ -1,5 +1,7 @@
 package entity;
 
+import core.ComboItem;
+
 import java.time.LocalDate;
 
 public class Season {
@@ -41,6 +43,9 @@ public class Season {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+    public ComboItem getComboItem(){
+        return new ComboItem(this.getId(), this.startDate + " / " + this.endDate);
     }
 
 }

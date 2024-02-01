@@ -98,14 +98,7 @@ public class AdminView extends Layout{
         loadUserTable(modelRowListBySearch);
 
 
-    }/*
-    public void loadUserFilterRole() {
-        this.cmb_role_filter.removeAllItems();
-        for(User role : userManager.findAll()) {
-           this.cmb_role_filter.addItem(new ComboItem(role.getId(), role.getRole().name()));
-        }
-        this.cmb_role_filter.setSelectedItem(null);
-    }*/
+    }
 
     public void loadUserInitComponent() {
 
@@ -152,8 +145,6 @@ public class AdminView extends Layout{
         });
         this.tbl_user.setComponentPopupMenu(this.userMenu);
 
-
-
     }
     public void loadUserFilterRole() {
         this.cmb_role_filter.removeAllItems();
@@ -162,10 +153,5 @@ public class AdminView extends Layout{
         }
         this.cmb_role_filter.setSelectedItem(null);
     }
-
-
-
-
-
 
 }

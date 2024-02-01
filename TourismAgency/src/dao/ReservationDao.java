@@ -41,6 +41,8 @@ public class ReservationDao extends BaseDao{
         obj.setGuestMail(rs.getString("guest_mail"));
         obj.setGuestPhone(rs.getString("guest_phone_number"));
         obj.setTotalGuest(rs.getInt("total_guest"));
+        obj.setAdultCount(rs.getInt("adult_count"));
+        obj.setChildCount(rs.getInt("child_count"));
 
         return obj;
     }
@@ -56,9 +58,11 @@ public class ReservationDao extends BaseDao{
                 "total_price," +
                 "guest_mail," +
                 "guest_phone_number," +
-                "total_guest" +
+                "total_guest," +
+                "adult_count," +
+                "child_count" +
                 ")" +
-                " VALUES (?,?,?,?,?,?,?,?,?)";
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
             pr.setInt(1, reservation.getRoomId());
@@ -70,6 +74,8 @@ public class ReservationDao extends BaseDao{
             pr.setString(7, reservation.getGuestMail());
             pr.setString(8, reservation.getGuestPhone());
             pr.setInt(9, reservation.getTotalGuest());
+            pr.setInt(10, reservation.getAdultCount());
+            pr.setInt(11, reservation.getChildCount());
             return pr.executeUpdate() != -1;
         }catch (SQLException e){
             e.printStackTrace();
@@ -84,10 +90,12 @@ public class ReservationDao extends BaseDao{
                 " guest_id_number=?, " +
                 "check_in_date=?," +
                 " check_out_date=?, " +
-                "total_price=? " +
-                "guest_mail=? " +
-                "guest_phone_number=? " +
-                "total_guest=? " +
+                "total_price=?, " +
+                "guest_mail=?, " +
+                "guest_phone_number=? ," +
+                "total_guest=?, " +
+                "adult_count=?, " +
+                "child_count=? " +
                 "WHERE id=?";
         try{
             PreparedStatement pr = this.conn.prepareStatement(query);
@@ -97,10 +105,12 @@ public class ReservationDao extends BaseDao{
             pr.setDate(4, Date.valueOf(reservation.getCheckInDate()));
             pr.setDate(5, Date.valueOf(reservation.getCheckOutDate()));
             pr.setBigDecimal(6, reservation.getTotalPrice());
-            pr.setInt(7, reservation.getId());
-            pr.setString(8, reservation.getGuestMail());
-            pr.setString(9, reservation.getGuestPhone());
-            pr.setInt(10, reservation.getTotalGuest());
+            pr.setString(7, reservation.getGuestMail());
+            pr.setString(8, reservation.getGuestPhone());
+            pr.setInt(9, reservation.getTotalGuest());
+            pr.setInt(10, reservation.getAdultCount());
+            pr.setInt(11, reservation.getChildCount());
+            pr.setInt(12, reservation.getId());
             return pr.executeUpdate() != -1;
         }catch (SQLException e){
             e.printStackTrace();
@@ -133,5 +143,21 @@ public class ReservationDao extends BaseDao{
             e.printStackTrace();
         }
         return obj;
+    }
+
+    public int getRoomIdByReservationId(int reservationId){
+        int roomId = 0;
+        String query = "SELECT room_id FROM public.reservation WHERE id = ?";
+        try{
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setInt(1, reservationId);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                roomId = rs.getInt("room_id");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return roomId;
     }
 }

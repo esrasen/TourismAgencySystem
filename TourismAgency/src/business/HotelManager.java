@@ -3,8 +3,11 @@ package business;
 import core.Helper;
 import dao.HotelDao;
 import entity.Hotel;
+import entity.PensionType;
+import entity.Season;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HotelManager {
     private final HotelDao hotelDao;
@@ -69,4 +72,11 @@ public class HotelManager {
         return this.hotelDao.delete(id);
     }
 
+    public List<PensionType> getPensionTypesByHotelId(int hotelId) {
+        return this.hotelDao.getPensionTypesByHotelId(hotelId);
+    }
+
+    public List<Season> getSeasonsByHotelId(int hotelId) {
+        return this.hotelDao.getSeasonsByHotelId(hotelId);
+    }
 }

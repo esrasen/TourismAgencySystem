@@ -45,10 +45,10 @@ public class ReservationView extends Layout{
     private JRadioButton rd_btn_minibar;
     private JRadioButton rd_btn_safebox;
     private JTextField fld_reservation_guest_count;
-    private JTextField fld_reservation_guest_mail;
-    private JTextField fld_reservation_guest_name;
-    private JTextField fld_reservation_guest_ID_no;
-    private JTextField fld_reservation_guest_mpno;
+    public JTextField fld_reservation_guest_mail;
+    public JTextField fld_reservation_guest_name;
+    public JTextField fld_reservation_guest_ID_no;
+    public JTextField fld_reservation_guest_mpno;
     private JButton btn_reservation_save;
     private RoomManager roomManager;
     private Reservation reservation;
@@ -71,6 +71,7 @@ public class ReservationView extends Layout{
         this.guiInitilaze(1000, 600);
         this.reservation = reservation;
         this.reservationManager = new ReservationManager();
+        this.roomManager = new RoomManager();
         this.hotelManager = new HotelManager();
         hotel = hotelManager.getById(room.getHotelId());
 
@@ -125,12 +126,15 @@ public class ReservationView extends Layout{
 
                 }else {
 
+                    this.reservation.setGuestName(fld_reservation_guest_name.getText());
+                    this.reservation.setGuestIDNumber(fld_reservation_guest_ID_no.getText());
+                    this.reservation.setGuestMail(fld_reservation_guest_mail.getText());
+                    this.reservation.setGuestPhone(fld_reservation_guest_mpno.getText());
+
                     result = this.reservationManager.update(this.reservation);
                 }
-
-
-
                 if (result){
+                    updateStock(selectedRoom.getId());
                     Helper.showMsg("done");
                     dispose();
                 }else {
@@ -149,11 +153,18 @@ public class ReservationView extends Layout{
         Period period = startDate.until(endDate);
         long day = period.getDays();
 
-       // int day = Integer.parseInt(fld_reservation_end_date.getText()) - Integer.parseInt(fld_reservation_start_date.getText());
         BigDecimal adultTotal = adultPrice.multiply(BigDecimal.valueOf(adultCount)).multiply(BigDecimal.valueOf(day));
         BigDecimal childTotal = childPrice.multiply(BigDecimal.valueOf(childCount)).multiply(BigDecimal.valueOf(day));
 
         return adultTotal.add(childTotal);
+    }
+
+
+    //Rezarvasyon başarılı bir şekilde oluştursa room içindeki stock değerini azalt
+    public void updateStock(int roomId){
+           Room room = roomManager.getById(roomId);
+            room.setStock(room.getStock() - 1);
+            roomManager.update(room);
     }
 
 }
