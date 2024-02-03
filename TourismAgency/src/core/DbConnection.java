@@ -9,6 +9,8 @@ public class DbConnection {
     private final String DB_USERNAME = "postgres";
     private final String DB_PASS = "postgres";
 
+
+    //Değerlendirme formu 6
     private DbConnection() {
         try {
             connection = java.sql.DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);

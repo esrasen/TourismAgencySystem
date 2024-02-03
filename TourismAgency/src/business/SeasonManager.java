@@ -44,27 +44,4 @@ public class SeasonManager {
         return this.seasonDao.update(season);
     }
 
-    public boolean delete(int id){
-        if (this.getById(id) == null){
-            return false;
-        }
-        return this.seasonDao.delete(id);
-    }
-
-    public ArrayList<Season> searchForTable(int hotelId){
-        String select = "SELECT * FROM public.season ";
-        ArrayList<String> whereList = new ArrayList<>();
-
-        if (hotelId != 0){
-            whereList.add("hotel_id = " + hotelId);
-        }
-
-        String whereStr = String.join(" AND ", whereList);
-        String query = select ;
-        if (whereStr.length() > 0){
-            query += "WHERE " + whereStr;
-        }
-        return this.seasonDao.selectByQuery(query);
-    }
-
 }

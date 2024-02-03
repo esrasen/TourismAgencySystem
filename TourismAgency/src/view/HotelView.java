@@ -35,6 +35,7 @@ public class HotelView extends Layout{
         this.hotelManager = new HotelManager();
 
 
+        //Değerlendirme formu 10
         btn_hotel_save.addActionListener(e ->  {
             JTextField[] checkFieldList ={
                     this.fld_hotel_name,

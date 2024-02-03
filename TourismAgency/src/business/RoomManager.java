@@ -55,12 +55,6 @@ public class RoomManager {
         return this.roomDao.update(room);
     }
 
-    public boolean delete(int id){
-        if (this.getById(id) == null){
-            return false;
-        }
-        return this.roomDao.delete(id);
-    }
 
     public ArrayList<Room> searchForTable(String hotelName, String city, String checkInDate, String checkOutDate){
         return this.roomDao.searchForRoom(hotelName, city, checkInDate, checkOutDate);

@@ -46,10 +46,4 @@ public class PensionTypeManager {
         }
         return this.pensionTypeDao.update(pensionType);
     }
-    public boolean delete(int id){
-        if (this.getById(id) == null){
-            return false;
-        }
-        return this.pensionTypeDao.delete(id);
-    }
 }

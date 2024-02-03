@@ -65,17 +65,7 @@ public class PensionTypeDao extends BaseDao{
         return true;
     }
 
-    public boolean delete(int id){
-        String query = "DELETE FROM public.pensiontype WHERE id=?";
-        try{
-            PreparedStatement pr = this.conn.prepareStatement(query);
-            pr.setInt(1, id);
-            return pr.executeUpdate() != -1;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return true;
-    }
+
     public PensionType getById(int id){
         PensionType obj = null;
         String query = "SELECT * FROM public.pensiontype WHERE id = ?";

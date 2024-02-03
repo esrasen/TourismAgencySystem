@@ -64,13 +64,6 @@ public class HotelManager {
         return this.hotelDao.update(hotel);
     }
 
-    public boolean delete(int id) {
-        if (getById(id) == null) {
-            Helper.showMsg(id + "ID kayıtlı otel bulunamadı !");
-            return false;
-        }
-        return this.hotelDao.delete(id);
-    }
 
     public List<PensionType> getPensionTypesByHotelId(int hotelId) {
         return this.hotelDao.getPensionTypesByHotelId(hotelId);

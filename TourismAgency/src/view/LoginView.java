@@ -26,6 +26,7 @@ public class LoginView extends Layout{
         btn_login.addActionListener(e -> {
 
             JTextField[] checkFieldList = {this.fld_username, this.fld_password};
+            //Değerlendirme formu 9
             if ( Helper.isFieldListEmpty(checkFieldList) ) {
                 Helper.showMsg("fill");
             }else {

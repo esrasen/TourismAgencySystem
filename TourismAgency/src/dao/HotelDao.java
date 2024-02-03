@@ -123,19 +123,6 @@ public class HotelDao extends BaseDao {
         return true;
     }
 
-    public boolean delete(int id) {
-        String query = "DELETE FROM public.hotel WHERE id=?";
-
-        try {
-            PreparedStatement pr = this.conn.prepareStatement(query);
-            pr.setInt(1, id);
-            return pr.executeUpdate() != -1;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
 
     public List<PensionType> getPensionTypesByHotelId(int hotelId) {
         List<PensionType> pensionTypeList = new ArrayList<>();

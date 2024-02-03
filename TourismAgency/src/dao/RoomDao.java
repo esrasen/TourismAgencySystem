@@ -138,19 +138,6 @@ public class RoomDao extends BaseDao {
 
         return true;
     }
-
-    public boolean delete(int id){
-        String query = "DELETE FROM public.room WHERE id=?";
-        try{
-            PreparedStatement pr = this.conn.prepareStatement(query);
-            pr.setInt(1, id);
-            return pr.executeUpdate() != -1;
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return true;
-    }
     public Room getById(int id){
         Room obj = null;
         String sql = "SELECT * FROM public.room " +

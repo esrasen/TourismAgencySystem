@@ -71,21 +71,6 @@ public class SeasonDao extends BaseDao{
         }
         return true;
     }
-
-    public boolean delete(int id) {
-        String query = "DELETE FROM public.season WHERE id=?";
-
-        try {
-            PreparedStatement pr = this.conn.prepareStatement(query);
-            pr.setInt(1, id);
-            return pr.executeUpdate() != -1;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
     public Season getById(int id) {
         Season obj = null;
         String query = "SELECT * FROM public.season WHERE id = ?";

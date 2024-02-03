@@ -116,6 +116,8 @@ public class ReservationView extends Layout{
                     this.reservation.setCheckOutDate(LocalDate.parse(fld_reservation_end_date.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                     this.reservation.setTotalPrice(totalPrice(adultCount, childCount, room.getAdultPrice(), room.getChildPrice()));
                     this.reservation.setTotalGuest(adultCount + childCount);
+                    this.reservation.setAdultCount(adultCount);
+                    this.reservation.setChildCount(childCount);
                     this.reservation.setGuestName(fld_reservation_guest_name.getText());
                     this.reservation.setGuestIDNumber(fld_reservation_guest_ID_no.getText());
                     this.reservation.setGuestMail(fld_reservation_guest_mail.getText());

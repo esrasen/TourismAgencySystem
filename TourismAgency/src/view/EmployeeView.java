@@ -71,6 +71,9 @@ public class EmployeeView extends Layout {
     private JPanel pnl_room_search;
     private JScrollPane scrl_room;
     private JTable tbl_reservation;
+    private JLabel lbl_user_name;
+    private JButton btn_refresh;
+    private JButton btn_refresh_pension;
     private Object[] col_season;
     private Object[] col_room;
 
@@ -92,7 +95,9 @@ public class EmployeeView extends Layout {
         this.guiInitilaze(1200, 600);
 
 
-        this.lbl_welcome.setText(this.lbl_welcome.getText() + this.user.getUserName());
+        this.lbl_welcome.setText(this.lbl_welcome.getText());
+        this.lbl_user_name.setText(this.user.getFullName());
+
         loadComponent();
         loadHotelTable();
         loadHotelComponent();
@@ -126,7 +131,6 @@ public class EmployeeView extends Layout {
         Object[] col_hotel = {"ID", "Adı", "Şehir", "Bölge", "Adres", "e-mail", "Telefon", "Yıldız", "Otopark", "WiFi", "Havuz", "Spa", "Fitness", "Konsiyerj", "Oda Servisi"};
         ArrayList<Object[]> hotelList = this.hotelManager.getForTable(col_hotel.length);
         this.createTable(this.tmdl_hotel, this.tbl_hotel, col_hotel, hotelList);
-
     }
 
     public void loadHotelComponent() {
@@ -142,10 +146,7 @@ public class EmployeeView extends Layout {
             });
 
         });
-
-
         this.tbl_hotel.setComponentPopupMenu(this.hotelMenu);
-
     }
 
 
@@ -194,6 +195,10 @@ public class EmployeeView extends Layout {
         });
 
         btn_cncl_season.addActionListener(e -> {
+            loadSeasonFilterHotel();
+        });
+
+        btn_refresh.addActionListener(e -> {
             loadSeasonFilterHotel();
         });
 
@@ -248,6 +253,11 @@ public class EmployeeView extends Layout {
         });
 
         btn_cncl_pension.addActionListener(e -> {
+            loadPensionFilterHotel();
+            cmb_pension_type_filter.setSelectedItem(null);
+        });
+
+        btn_refresh_pension.addActionListener(e -> {
             loadPensionFilterHotel();
             cmb_pension_type_filter.setSelectedItem(null);
         });
