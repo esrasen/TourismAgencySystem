@@ -2,13 +2,8 @@
 <h3 align="center">Turizm sektöründe faaliyet gösteren işletmeler için rezervasyon sistemi</h3>  
 
 
-
-<h2 id="proje-ozeti-video-kaydı"> :video camera: Proje Özeti Video Kaydı</h2>
-<p>
-✤ <a href="https://drive.google.com/file/d/1oGhAhnkF8Km8NiwUC_Qcac16mK33Jadn/view?usp=sharing">Video Linki</a> <br>
-</p>
-
 <br/>
+
 
 <p align="center"> 
   <img src="docs/images/main.png" alt="Sistem Ana Görseli" width="60%" height="30%">
@@ -31,6 +26,16 @@
     <li><a href="#iletisim"> ➤ İletişim</a></li>
   </ol>
 </details>
+
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+<!-- VİDEO -->
+<h2 id="proje-ozeti-video-kaydı"> :video_camera: Proje Özeti Video Kaydı</h2>
+
+<p>
+✤ <a href="https://drive.google.com/file/d/1oGhAhnkF8Km8NiwUC_Qcac16mK33Jadn/view?usp=sharing">Video Linki</a> <br>
+</p>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- PROJECT OVERVIEW -->
