@@ -1,6 +1,9 @@
 <h1 align="center">Turizm Acentesi Yönetim Sistemi</h1>
 <h3 align="center">Turizm sektöründe faaliyet gösteren işletmeler için rezervasyon sistemi</h3>  
 
+
+
+<h2 id="proje-ozeti-video-kaydı"> :video camera: Proje Özeti Video Kaydı</h2>
 <p>
 ✤ <a href="https://drive.google.com/file/d/1oGhAhnkF8Km8NiwUC_Qcac16mK33Jadn/view?usp=sharing">Video Linki</a> <br>
 </p>
