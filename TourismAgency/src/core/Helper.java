@@ -18,6 +18,7 @@ public class Helper {
         }
     }
 
+    //Değerlendirme formu 24 - 25
     public static void showMsg(String str) {
         optionPaneTR();
         String msg;

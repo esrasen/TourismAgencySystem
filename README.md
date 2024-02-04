@@ -1,6 +1,10 @@
 <h1 align="center">Turizm Acentesi Yönetim Sistemi</h1>
 <h3 align="center">Turizm sektöründe faaliyet gösteren işletmeler için rezervasyon sistemi</h3>  
 
+<p>
+✤ <a href="https://drive.google.com/file/d/1oGhAhnkF8Km8NiwUC_Qcac16mK33Jadn/view?usp=sharing">Video Linki</a> <br>
+</p>
+
 <br/>
 
 <p align="center"> 

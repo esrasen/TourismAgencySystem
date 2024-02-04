@@ -115,6 +115,7 @@ public class EmployeeView extends Layout {
 
     }
 
+    //Değerlendirme formu 8
 
     private void loadComponent() {
         this.btn_logout.addActionListener(new ActionListener() {
@@ -150,6 +151,7 @@ public class EmployeeView extends Layout {
     }
 
 
+    //Değerlendirme formu 11
     public void loadSeasonTable(ArrayList<Object[]> seasonList) {
         this.col_season = new Object[]{"ID", "Otel ID", "Başlangıç Tarihi ", "Bitiş Tarihi "};
         if (seasonList == null) {
@@ -205,6 +207,7 @@ public class EmployeeView extends Layout {
     }
 
 
+    //Değerlendirme formu 12
     public void loadPensionTable(ArrayList<Object[]> pensionList) {
         Object[] col_pension = {"ID", "Otel ID", "Pansiyon Tipi"};
         if (pensionList == null) {
@@ -301,6 +304,7 @@ public class EmployeeView extends Layout {
             String checkInDate = fld_room_checkin.getText();
             String checkOutDate = fld_room_checkout.getText();
 
+            //Değerlendirme formu 16
             ArrayList<Room> roomListBySearch = this.roomManager.searchForTable(
                     hotelName, city, checkInDate, checkOutDate);
             ArrayList<Object[]> roomList = this.roomManager.getForTable(col_room.length, roomListBySearch);
@@ -309,6 +313,7 @@ public class EmployeeView extends Layout {
     }
 
 
+    //Değerlendirme formu 20
     public void loadReservationTable(ArrayList<Object[]> reservationList) {
         Object[] col_reservation = {"ID", "Otel ID", "Giriş Tarihi", "Çıkış Tarihi ", "Toplam Tutar", "Misafir Sayısı ", "Misafir Adı ", "Misafir Kimlik No", "Mail", "Telefon"};
         if (reservationList == null) {
@@ -352,6 +357,7 @@ public class EmployeeView extends Layout {
 
     }
 
+    //Değerlendirme formu 25
     private boolean validationRoomField(int roomAdult, int roomChild, Room room, Season season) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter dbFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -396,7 +402,9 @@ public class EmployeeView extends Layout {
         return true;
     }
 
+    //Değerlendirme formu 21 - 22
     public void loadReservationUpdateAndDeleteComponent() {
+
         tableRowSelect(this.tbl_reservation);
         this.reservationMenu = new JPopupMenu();
         this.reservationMenu.add("Rezervasyon Sil").addActionListener(e -> {
@@ -411,6 +419,8 @@ public class EmployeeView extends Layout {
                 Helper.showMsg("error");
             }
         });
+
+
         this.reservationMenu.add("Rezervasyon Güncelle").addActionListener(e -> {
 
             int selectedId = this.getTableSelectedRow(this.tbl_reservation, 0);
@@ -418,7 +428,6 @@ public class EmployeeView extends Layout {
             Reservation selectedReservation = this.reservationManager.getById(selectedId);
             Room room = this.roomManager.getById(selectedReservation.getRoomId());
 
-            //selectedReservation.setTotalGuest(selectedReservation.getAdultCount() + selectedReservation.getChildCount());
 
             DateTimeFormatter targetFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             DateTimeFormatter dbFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -449,6 +458,7 @@ public class EmployeeView extends Layout {
 
     }
 
+    //Değerlendirme formu 23
     //Rezarvasyon silinirse room içindeki stock değerini arttır
     public void updateStock(int roomId) {
         Room room = roomManager.getById(roomId);

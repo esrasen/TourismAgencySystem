@@ -102,7 +102,7 @@ public class ReservationView extends Layout{
         fld_reservation_guest_count.setText(String.valueOf(adultCount + childCount));
         fld_reservation_prc.setText(String.valueOf(totalPrice(adultCount, childCount, room.getAdultPrice(), room.getChildPrice())));
 
-
+        //Değerlendirme formu 18
 
         btn_reservation_save.addActionListener(e -> {
             if(Helper.isFieldListEmpty(new JTextField[] {fld_reservation_guest_name, fld_reservation_guest_mail, fld_reservation_guest_ID_no, fld_reservation_guest_mpno})){
@@ -148,6 +148,7 @@ public class ReservationView extends Layout{
 
     }
 
+    //Değerlendirme formu 17
     public BigDecimal totalPrice(int adultCount, int childCount, BigDecimal adultPrice, BigDecimal childPrice){
         LocalDate endDate = LocalDate.parse(fld_reservation_end_date.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate startDate = LocalDate.parse(fld_reservation_start_date.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -162,6 +163,7 @@ public class ReservationView extends Layout{
     }
 
 
+    //Değerlendirme formu 19
     //Rezarvasyon başarılı bir şekilde oluştursa room içindeki stock değerini azalt
     public void updateStock(int roomId){
            Room room = roomManager.getById(roomId);

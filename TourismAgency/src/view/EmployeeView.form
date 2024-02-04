@@ -361,7 +361,7 @@
                       <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Çıkış Tarihi"/>
+                      <text value="Çıkış Tarihi (dd/mm/yyyy)"/>
                     </properties>
                   </component>
                   <component id="4a6c9" class="javax.swing.JLabel">
@@ -411,7 +411,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="2"/>
+                      <text value="0"/>
                     </properties>
                   </component>
                   <component id="2cd09" class="javax.swing.JTextField" binding="fld_room_adult">
@@ -421,7 +421,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="2"/>
+                      <text value="0"/>
                     </properties>
                   </component>
                   <component id="b2344" class="javax.swing.JFormattedTextField" binding="fld_room_checkout">
@@ -431,7 +431,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="20/06/2024"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="46fde" class="javax.swing.JFormattedTextField" binding="fld_room_checkin">
@@ -441,7 +441,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="15/06/2024"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="1c170" class="javax.swing.JTextField" binding="fld_room_city">

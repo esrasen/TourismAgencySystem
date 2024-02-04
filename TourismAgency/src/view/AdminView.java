@@ -103,6 +103,7 @@ public class AdminView extends Layout {
 
     }
 
+    //Değerlendirme formu 7
     public void loadUserInitComponent() {
 
 

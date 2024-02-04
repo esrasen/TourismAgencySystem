@@ -160,6 +160,7 @@ public class RoomDao extends BaseDao {
     }
 
 
+    //Değerlendirme formu 15
     public ArrayList<Room> searchForRoom(String hotelName, String city, String checkInDate, String checkOutDate) {
         ArrayList<Room> roomList = new ArrayList<>();
         StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM public.room " +

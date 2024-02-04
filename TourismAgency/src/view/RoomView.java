@@ -67,9 +67,7 @@ public class RoomView extends Layout{
                     for (PensionType pensionType : pensionTypes) {
                         cmb_room_pension.addItem(new ComboItem(pensionType.getId(), pensionType.getPensionOption().name()));
                     }
-
                     cmb_room_pension.setSelectedItem(null);
-
 
                     cmb_room_season.removeAllItems();
                     for (Season season : seasons) {
@@ -84,6 +82,8 @@ public class RoomView extends Layout{
         this.cmb_room_type.setModel(new DefaultComboBoxModel<>(RoomOption.values()));
         this.cmb_room_type.setSelectedItem(null);
 
+
+        //Değerlendirme formu 13 - 14
 
         btn_room_save.addActionListener(e ->  {
             if (Helper.isFieldListEmpty(new JTextField[]{this.fld_room_stock, this.fld_room_adultprc, this.fld_room_bed_count, this.fld_room_m2, this.fld_room_childprc})){
